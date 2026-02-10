@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Order Success - Wearify">
+    <title>Order Success - Wearify</title>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>𝕎</text></svg>">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <div class="logo">
+                <a href="/" style="display: flex; align-items: center; text-decoration: none;">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="url(#gradient)" stroke-width="2"
+                        style="margin-right: 8px;">
+                        <defs>
+                            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <path
+                            d="M9 2L7.17 6M15 2l1.83 4M3.34 6h17.32a1 1 0 01.98 1.2l-1.83 10a2 2 0 01-1.97 1.8H6.16a2 2 0 01-1.97-1.8l-1.83-10A1 1 0 013.34 6z" />
+                    </svg>
+                    <h1>Wearify</h1>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Success Section -->
+    <section class="hero" style="min-height: 100vh; display: flex; align-items: center; padding-top: 100px;">
+        <div class="hero-background"></div>
+        <div class="container" style="max-width: 600px; text-align: center;">
+            <div
+                style="background: white; border-radius: 24px; padding: 4rem 3rem; box-shadow: 0 20px 60px rgba(0,0,0,0.1);">
+                <div
+                    style="width: 100px; height: 100px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 2rem; font-size: 3rem;">
+                    ✓
+                </div>
+
+                <h2
+                    style="font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 1rem; color: var(--neutral-900);">
+                    Order Placed Successfully!</h2>
+                <p style="color: var(--neutral-600); font-size: 1.125rem; margin-bottom: 3rem;">Thank you for your
+                    order. We'll send you a confirmation email shortly.</p>
+
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="/order" class="btn btn-primary" style="text-decoration: none;">View Orders</a>
+                    <a href="/" class="btn btn-secondary" style="text-decoration: none;">Continue Shopping</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="/script.js"></script>
+</body>
+
+</html>

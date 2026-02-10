@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{admin/admin}">
+
+<body>
+
+    <div layout:fragment="content">
+
+        <div class="container mt-4">
+            <div class="head">
+                <h1>Add New Product</h1>
+            </div>
+
+            <form th:action="@{/admin/products/add}" method="post" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label class="form-label">Name</label>
+                    <input type="text" class="form-control" name="name" placeholder="Enter product name" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Category</label>
+                    <select class="form-select" name="category" required>
+                        <option value="">-- Select Category --</option>
+                        <option value="MENS">MENS</option>
+                        <option value="WOMENS">WOMENS</option>
+                        <option value="ACCESSORIES">ACCESSORIES</option>
+                        <option value="SHOES">SHOES</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Short Description</label>
+                    <input type="text" class="form-control" name="smallDescription" placeholder="Short description">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Description</label>
+                    <textarea class="form-control" rows="4" name="description"
+                        placeholder="Enter full description"></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Selling Price</label>
+                    <input type="number" class="form-control" name="sellingPrice" placeholder="Enter selling price"
+                        required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Discounted Price</label>
+                    <input type="number" class="form-control" name="discountedPrice"
+                        placeholder="Enter discounted price">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Product Image</label>
+                    <input type="file" class="form-control" name="productImage">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Or Image URL</label>
+                    <input type="url" class="form-control" name="imageUrl" placeholder="https://example.com/image.jpg">
+                    <div class="form-text">Paste an image link if you don't want to upload a file</div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Add Product</button>
+                <a th:href="@{/admin/products}" class="btn btn-secondary ms-3">Cancel</a>
+            </form>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Product Details - Wearify">
+    <title th:text="${product.name} + ' - Wearify'">Product - Wearify</title>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>𝕎</text></svg>">
+    <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="logo"><a href="/">
+                    <h1>Wearify</h1>
+                </a></div>
+        </div>
+    </nav>
+
+    <section class="hero" style="min-height: 100vh; padding-top: 150px;">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start;">
+                <div>
+                    <img th:src="@{/images/{id}(id=${product.id})}" alt="Product"
+                        style="width: 100%; border-radius: 16px; box-shadow: 0 8px 30px rgba(0,0,0,0.1);">
+                </div>
+
+                <div>
+                    <span
+                        style="color: var(--primary-600); font-weight: 600; text-transform: uppercase; font-size: 0.875rem;"
+                        th:text="${product.category}">Category</span>
+                    <h1 style="font-family: var(--font-heading); font-size: 3rem; margin: 1rem 0;"
+                        th:text="${product.name}">Product Name</h1>
+                    <p style="color: var(--neutral-600); font-size: 1.125rem; margin-bottom: 2rem;"
+                        th:text="${product.smallDescription}">Description</p>
+
+                    <div style="margin-bottom: 2rem;">
+                        <span style="font-size: 2.5rem; font-weight: 700; color: var(--primary-600);">₹<span
+                                th:text="${product.discountedPrice}">0</span></span>
+                        <span
+                            style="font-size: 1.5rem; color: var(--neutral-500); text-decoration: line-through; margin-left: 1rem;">₹<span
+                                th:text="${product.sellingPrice}">0</span></span>
+                    </div>
+
+                    <p style="color: var(--neutral-700); line-height: 1.8; margin-bottom: 2rem;"
+                        th:text="${product.description}">Full description</p>
+
+                    <form th:action="@{/cart/add}" method="post">
+                        <input type="hidden" name="productId" th:value="${product.id}">
+                        <button type="submit" class="btn btn-primary"
+                            style="font-size: 1.25rem; padding: 1rem 3rem;">Add to Cart</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

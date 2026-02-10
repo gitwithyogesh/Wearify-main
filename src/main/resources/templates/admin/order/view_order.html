@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{admin/admin}">
+
+<head>
+    <title>Order Management</title>
+</head>
+
+<body>
+
+    <div layout:fragment="content">
+        <div class="container-fluid mt-3">
+            <div class="head">
+                <h1>Order Management</h1>
+                <!-- Add Order functionality might not exist in Wearify Admin for now, but keeping link for consistency if backend supports it or remove it -->
+                <!-- <a th:href="@{/admin/orders/add}" class="btn btn-primary mb-3">Add New Order</a> -->
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <table class="table table-bordered table-hover">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>#</th>
+                                <th>Product</th>
+                                <th>Customer Name</th>
+                                <th>Address</th>
+                                <th>Quantity</th>
+                                <th>Total Price</th>
+                                <th>Payment Method</th>
+                                <th>Payment Status</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="order : ${orders}">
+                                <th th:text="${order.id}">1</th>
+
+                                <!-- Product Name -->
+                                <td th:text="${order.product != null ? order.product.name : 'N/A'}">Product Name</td>
+
+                                <!-- Customer Name (via User or Address?) Petstore uses address.fullName. Wearify Address has 'name' -->
+                                <td
+                                    th:text="${order.address != null ? order.address.name : (order.user != null ? order.user.username : 'N/A')}">
+                                    Customer</td>
+
+                                <!-- Address -->
+                                <td
+                                    th:text="${order.address != null ? (order.address.area + ', ' + order.address.city) : 'N/A'}">
+                                    Address</td>
+
+                                <!-- Quantity -->
+                                <td th:text="${order.quantity}">1</td>
+
+                                <!-- Total Price -->
+                                <td
+                                    th:text="${order.quantity * (order.product != null ? order.product.discountedPrice : 0)}">
+                                    0</td>
+
+                                <!-- Payment Method -->
+                                <td th:text="${order.paymentMethod}">COD</td>
+
+                                <!-- Payment Status -->
+                                <td th:text="${order.paymentStatus}">PENDING</td>
+
+                                <!-- Status -->
+                                <td th:text="${order.status}">PENDING</td>
+
+                                <!-- Actions -->
+                                <td>
+                                    <!-- Assuming we have an update endpoint or disable edit for now if strict mismatch -->
+                                    <!-- Wearify AdminOrderController might need update logic matching this URL -->
+                                    <!-- Leaving hooks for now, but commenting out invalid ones if unsure -->
+                                    <a th:href="@{/admin/orders/update/{id}(id=${order.id})}">
+                                        <button class="btn btn-warning btn-sm">Edit</button>
+                                    </a>
+                                    <a th:href="@{/admin/orders/delete/{id}(id=${order.id})}"
+                                        onclick="return confirm('Are you sure?')">
+                                        <button class="btn btn-danger btn-sm">Delete</button>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr th:if="${orders.isEmpty()}">
+                                <td colspan="8" class="text-center">No orders found</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

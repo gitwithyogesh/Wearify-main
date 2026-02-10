@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Order - Wearify Admin</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="logo"><a href="/admin">
+                    <h1>Wearify Admin</h1>
+                </a></div>
+        </div>
+    </nav>
+
+    <section class="hero" style="min-height: 100vh; padding-top: 150px;">
+        <div class="container">
+            <div
+                style="max-width: 600px; margin: 0 auto; background: white; padding: 2rem; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+                <h2 style="margin-bottom: 2rem; text-align: center;">Update Order Status</h2>
+                <form th:action="@{/admin/orders/update}" th:object="${order}" method="post">
+                    <!-- CSRF Token -->
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
+                    <input type="hidden" th:field="*{id}">
+                    <!-- Hidden fields to preserve relationships if not editable -->
+                    <input type="hidden" th:field="*{user}" />
+                    <input type="hidden" th:field="*{product}" />
+                    <input type="hidden" th:field="*{quantity}" />
+                    <input type="hidden" th:field="*{orderAt}" />
+                    <input type="hidden" th:field="*{address}" />
+
+
+                    <div class="dashboard-card" style="margin-bottom: 2rem; text-align: left;">
+                        <p><strong>Order ID:</strong> <span th:text="*{id}"></span></p>
+                        <p><strong>Customer:</strong> <span th:text="*{user.username}"></span></p>
+                        <p><strong>Product:</strong> <span th:text="*{product.name}"></span></p>
+                        <p><strong>Total Price:</strong> ₹<span th:text="*{product.discountedPrice * quantity}"></span>
+                        </p>
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 1.5rem;">
+                        <label for="status"
+                            style="display: block; margin-bottom: 0.5rem; color: var(--gray-800);">Status</label>
+                        <select id="status" th:field="*{status}"
+                            style="width: 100%; padding: 0.75rem; border: 1px solid #e5e7eb; border-radius: 8px;">
+                            <option value="PENDING">PENDING</option>
+                            <option value="SHIPPED">SHIPPED</option>
+                            <option value="DELIVERED">DELIVERED</option>
+                            <option value="CANCELLED">CANCELLED</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Update Status</button>
+                    <div style="text-align: center; margin-top: 1rem;">
+                        <a href="/admin/orders" style="color: var(--gray-500); text-decoration: none;">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
